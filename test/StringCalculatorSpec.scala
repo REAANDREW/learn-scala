@@ -13,5 +13,9 @@ class StringCalculatorSpec extends Specification{
     "0 numbers" >> {
       calculator Add "" mustEqual(0)
     }
+
+    "1 number" >> {
+      calculator Add "1" mustEqual(1)
+    }
   }
 }
