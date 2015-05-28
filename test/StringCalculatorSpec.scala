@@ -25,5 +25,17 @@ class StringCalculatorSpec extends Specification{
     "3 numbers" should{
       calculator Add "1,2,3" mustEqual(6)
     }
+
+    "10 numbers" should{
+      val range = 1 until 10
+      val expected = range sum;
+      calculator Add (range mkString ",") mustEqual(expected)
+    }
+
+    "100 numbers" should{
+      val range = 1 until 100
+      val expected = range sum;
+      calculator Add (range mkString ",") mustEqual(expected)
+    }
   }
 }
