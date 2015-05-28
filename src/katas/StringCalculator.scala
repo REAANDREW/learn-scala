@@ -15,6 +15,6 @@ class StringCalculator{
 
   def Add(numbers: String) : Int = {
     if(numbers.isEmpty) 0 
-    else addMultiple(numbers.split(",").toList)
+    else addMultiple(numbers.split(Array(',','\n')).toList)
   }
 }

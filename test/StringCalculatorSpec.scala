@@ -42,5 +42,9 @@ class StringCalculatorSpec extends Specification{
       calculator Add (input) mustEqual(expected)
     }
 
+    "A set of numbers with a new line delimiter present" should{
+      calculator Add "1\n2,3" mustEqual 6
+    }
+
   }
 }
