@@ -27,15 +27,20 @@ class StringCalculatorSpec extends Specification{
     }
 
     "10 numbers" should{
-      val range = 1 until 10
-      val expected = range sum;
-      calculator Add (range mkString ",") mustEqual(expected)
+      calculator Add ("1,2,3,4,5,6,7,8,9") mustEqual(45)
     }
 
+    //
+    //Just adding this test case to explore some scala
+    //syntax of the range and also the out of the box
+    //functions attached to Iterables! :-)
+    //
     "100 numbers" should{
       val range = 1 until 100
       val expected = range sum;
-      calculator Add (range mkString ",") mustEqual(expected)
+      val input = range mkString ","
+      calculator Add (input) mustEqual(expected)
     }
+
   }
 }
