@@ -10,16 +10,20 @@ class StringCalculatorSpec extends Specification{
 
   "The 'Add(numbers: string)' method can handle" >> {
 
-    "0 numbers" >> {
+    "0 numbers" should{
       calculator Add "" mustEqual(0)
     }
 
-    "1 number" >> {
+    "1 number" should{
       calculator Add "1" mustEqual(1)
     }
 
-    "2 numbers" >> {
+    "2 numbers" should{
       calculator Add "1,2" mustEqual(3)
+    }
+
+    "3 numbers" should{
+      calculator Add "1,2,3" mustEqual(6)
     }
   }
 }
