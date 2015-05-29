@@ -14,18 +14,23 @@ See requirements.txt
 
 ## Compiling and Testing
 
+```shell
 > sbt test
+```
 
 ## Continuous Testing
 
 Go into sbt
 
+```shell
 > sbt
+```
 
 Then run a clean and a test
 
+```shell
 > ~~ ;clean;test
-
+```
 
 
 
