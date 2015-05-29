@@ -3,17 +3,7 @@ package katas
 import scala.language.postfixOps
 import scala.annotation.tailrec
 
-class NumbersExtractor{
-  def extract(numbers:String) = {
-      val delimiter = numbers.charAt(2)
-      val value = numbers.split("\n")(1)
-      value.split(delimiter) 
-  }
-}
-
 class StringCalculator{
-
-  def extractor : NumbersExtractor = new NumbersExtractor()
 
   def addMultiple(numbers: List[String]) : Int = {
     @tailrec
@@ -27,18 +17,25 @@ class StringCalculator{
     sumAccumulator(numbers, 0)
   }
 
-  def Add(numbers: String) = 
+  def add(numbers: String) = 
     numbers match{
-      case n:String if n nonEmpty => NonEmptyInput(n)
+      case n:String if n nonEmpty => nonEmptyInput(n)
       case _ => 0
     }
 
-  def NonEmptyInput(numbers:String) = 
+  private def nonEmptyInput(numbers:String) = 
     numbers match {
-      case n:String if n startsWith "//" => DefinedDelimiter(numbers)
-      case _ => addMultiple(numbers.split(Array(',','\n')).toList)
+      case n:String if n startsWith "//" => definedDelimiter(numbers)(addMultiple)
+      case _ => addMultiple(numbers.split(delimiterSet(',')).toList)
     }
 
-  def DefinedDelimiter(numbers:String) = 
-    addMultiple(extractor.extract(numbers).toList)
+  private def definedDelimiter(numbers:String) = {
+    var delimiter = numbers(2)
+    val value = numbers.substring(numbers.indexOf("\n")+1)
+    val values = value.split(delimiterSet(delimiter))
+    (handler:(List[String]=>Int)) => handler(values.toList)
+  }
+
+  private def delimiterSet(delimiter:Char) : Array[Char] = Array(delimiter,'\n')
+    
 }

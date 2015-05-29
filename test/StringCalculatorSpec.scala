@@ -3,18 +3,6 @@ package test
 import org.specs2.mutable._
 import katas._
 
-class DelimiterExtractorSpec extends Specification{
-  "This is a specification for the DelimiterExtractor".txt
-
-  def extractor: NumbersExtractor = new NumbersExtractor()
-
-  "The 'Extract(numbers: String)' method can handle" >> {
-    "Defined delimiter" should{
-      extractor extract "//;\n1;2" mustEqual(Array("1","2"))
-    }
-  }
-}
-
 class StringCalculatorSpec extends Specification{
   "This is a specification for the String Calculator Kata".txt
 
@@ -23,23 +11,23 @@ class StringCalculatorSpec extends Specification{
   "The 'Add(numbers: String)' method can handle" >> {
 
     "0 numbers" should{
-      calculator Add "" mustEqual(0)
+      calculator add "" mustEqual(0)
     }
 
     "1 number" should{
-      calculator Add "1" mustEqual(1)
+      calculator add "1" mustEqual(1)
     }
 
     "2 numbers" should{
-      calculator Add "1,2" mustEqual(3)
+      calculator add "1,2" mustEqual(3)
     }
 
     "3 numbers" should{
-      calculator Add "1,2,3" mustEqual(6)
+      calculator add "1,2,3" mustEqual(6)
     }
 
     "10 numbers" should{
-      calculator Add ("1,2,3,4,5,6,7,8,9") mustEqual(45)
+      calculator add ("1,2,3,4,5,6,7,8,9") mustEqual(45)
     }
 
     //
@@ -52,16 +40,20 @@ class StringCalculatorSpec extends Specification{
         val range = 1 until 100
         val expected = range sum;
         val input = range mkString ","
-        calculator Add (input) mustEqual(expected)
+        calculator add (input) mustEqual(expected)
       }
     }
 
     "A set of numbers with a new line delimiter present" should{
-      calculator Add "1\n2,3" mustEqual 6
+      calculator add "1\n2,3" mustEqual 6
     }
 
     "Allow for a defined delimiter" should{ 
-      calculator Add "//;\n1;2" mustEqual 3
+      calculator add "//;\n1;2" mustEqual 3
+    }
+
+    "Allow for a defined delimiter and new line between numbers" should{ 
+      calculator add "//;\n1;2\n3" mustEqual 6
     }
   }
 }
