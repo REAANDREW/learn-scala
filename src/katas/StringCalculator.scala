@@ -11,6 +11,7 @@ class StringCalculator{
   def valueGuard(number:Int) : Int = 
     number match{
       case x if x < 0 => throw new StringCalculatorException("negatives not allowed")
+      case x if x >= 1000 => 0
       case _ => number
     }
 

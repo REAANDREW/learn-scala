@@ -59,5 +59,9 @@ class StringCalculatorSpec extends Specification{
     "Negative number throws an throws exception" should{
       calculator add "//;\n-1;2\n3" must throwA(new StringCalculatorException("negatives not allowed"))
     }
+
+    "Numbers bigger than 1000 should be ignored" should{
+      calculator add "//;\n1000;1;2" mustEqual 3
+    }
   }
 }
