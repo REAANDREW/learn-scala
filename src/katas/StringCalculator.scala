@@ -2,15 +2,24 @@ package katas
 
 import scala.language.postfixOps
 import scala.annotation.tailrec
+import java.lang.RuntimeException
+
+class StringCalculatorException(msg:String) extends RuntimeException(msg){ }
 
 class StringCalculator{
+
+  def valueGuard(number:Int) : Int = 
+    number match{
+      case x if x < 0 => throw new StringCalculatorException("negatives not allowed")
+      case _ => number
+    }
 
   def addMultiple(numbers: List[String]) : Int = {
     @tailrec
     def sumAccumulator(numbers: List[String], accum: Int) : Int = {
       numbers match {
         case Nil => accum
-        case x :: tail => sumAccumulator(tail, accum + x.toInt)
+        case x :: tail => sumAccumulator(tail, accum + valueGuard(x.toInt))
       }
     }
 

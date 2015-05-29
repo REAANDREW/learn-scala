@@ -55,5 +55,9 @@ class StringCalculatorSpec extends Specification{
     "Allow for a defined delimiter and new line between numbers" should{ 
       calculator add "//;\n1;2\n3" mustEqual 6
     }
+
+    "Negative number throws an throws exception" should{
+      calculator add "//;\n-1;2\n3" must throwA(new StringCalculatorException("negatives not allowed"))
+    }
   }
 }
