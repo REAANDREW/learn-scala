@@ -36,16 +36,16 @@ class StringCalculator{
   private def nonEmptyInput(numbers:String) = 
     numbers match {
       case n:String if n startsWith "//" => definedDelimiter(numbers)(addMultiple)
-      case _ => addMultiple(numbers.split(delimiterSet(',')).toList)
+      case _ => addMultiple(numbers.split(delimiterSet(",")).toList)
     }
 
   private def definedDelimiter(numbers:String) = {
-    var delimiter = numbers(2)
+    var delimiter = numbers.substring(2,numbers.indexOf("\n"))
     val value = numbers.substring(numbers.indexOf("\n")+1)
-    val values = value.split(delimiterSet(delimiter))
+    val values = value.split(delimiterSet(delimiter.toString))
     (handler:(List[String]=>Int)) => handler(values.toList)
   }
 
-  private def delimiterSet(delimiter:Char) : Array[Char] = Array(delimiter,'\n')
+  private def delimiterSet(delimiter:String) : String = s"[$delimiter]+|\n"
     
 }

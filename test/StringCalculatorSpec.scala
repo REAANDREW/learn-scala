@@ -63,5 +63,9 @@ class StringCalculatorSpec extends Specification{
     "Numbers bigger than 1000 should be ignored" should{
       calculator add "//;\n1000;1;2" mustEqual 3
     }
+
+    "Delimiters can be of any length" should{
+      calculator add "//***\n1***2***3" mustEqual 6
+    }
   }
 }
